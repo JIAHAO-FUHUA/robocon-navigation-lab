@@ -15,41 +15,16 @@ sudo systemctl enable --now docker
 sudo docker run --rm hello-world
 ```
 
-Check that you see `Hello from Docker`. From the project folder, create the container once.
+Check that you see `Hello from Docker`. Start the lab from the project folder.
 
 ```bash
 cd ~/robocon-navigation-lab
-sudo docker run -it --name robocon-intro --shm-size=1g \
-  -v "$PWD:/work" -w /work ros:jazzy-ros-base-noble bash
+bash start_lab.sh
 ```
 
-After the prompt changes, run these commands **inside the container**.
+Use the same command for every session. The launcher creates the container on first use, builds any missing course dependencies, starts the virtual display and opens an Ubuntu shell inside `/work`. If an older project already uses the name `robocon-intro`, the launcher creates a separate container for this project. Wait for `Lab ready in /work`. The launcher sets the overview camera to 4 Hz, as used in the class replay. Type `exit` to return to your Ubuntu terminal.
 
-```bash
-pwd
-bash /work/scripts/setup_course.sh
-```
-
-`pwd` should show `/work`. Setup downloads the upstream sources, builds the workspace, applies the course compatibility changes and generates the robot model. Wait for `COURSE SETUP COMPLETE`. If setup stops, find the first error before continuing. Ask for a prepared classroom machine if the first build runs beyond the session.
-
-On a later day, reopen the container from the **Ubuntu host**.
-
-```bash
-sudo docker start robocon-intro
-sudo docker exec -it robocon-intro bash
-```
-
-Run the remaining commands **inside the container**. Start a virtual display before the first simulation.
-
-```bash
-source /work/env.sh
-ros2 pkg executables fastlio2
-ros2 pkg executables pgo
-ros2 pkg executables localizer
-bash /work/start_virtual_display.sh
-```
-
-Look for `lio_node`, `pgo_node`, `localizer_node` and the OpenGL renderer. Use one simulation at a time. The virtual display allows the simulator to run in the background and save a video.
+Use an interactive Ubuntu terminal to start the launcher. If a previous command left Bash at a `>` prompt, press Ctrl+C to cancel that unfinished command. If setup stops, save the first error and retry the launcher after resolving it. Use one simulation at a time. Run the remaining commands **inside the container**.
 
 ### Upstream code you download
 
