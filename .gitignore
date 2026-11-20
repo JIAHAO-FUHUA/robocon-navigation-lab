@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+/jazzy_ws/
+/deps_install/
+/logs/
+/mobile_sensor.sdf
+/mobile_sensor.urdf
+/mobile_world.sdf
+**/sessions/
+**/latest_*.txt

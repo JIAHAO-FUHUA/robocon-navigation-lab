@@ -1,0 +1,119 @@
+{
+  "field_m": [
+    11.0,
+    11.0
+  ],
+  "grid_m": 0.05,
+  "robot_size_m": [
+    0.58,
+    0.68
+  ],
+  "safety_margin_m": 0.2,
+  "obstacles_world": [
+    {
+      "name": "L1 platform",
+      "box": [
+        -3.0,
+        -3.0,
+        3.0,
+        3.0
+      ],
+      "height": 0.6
+    },
+    {
+      "name": "Reference A",
+      "box": [
+        -3.4,
+        -1.35,
+        -3.0,
+        -0.65
+      ],
+      "height": 0.8
+    },
+    {
+      "name": "Reference B",
+      "box": [
+        0.6,
+        -3.4,
+        1.4,
+        -3.0
+      ],
+      "height": 1.1
+    },
+    {
+      "name": "Red obstacle",
+      "box": [
+        3.0,
+        -0.7,
+        3.6,
+        0.7
+      ],
+      "height": 0.8
+    }
+  ],
+  "start_world": [
+    -4.4,
+    -4.4
+  ],
+  "goal_world": [
+    4.4,
+    2.0
+  ],
+  "mapping_loop_world": [
+    [
+      -4.4,
+      -4.4
+    ],
+    [
+      4.4,
+      -4.4
+    ],
+    [
+      4.4,
+      4.4
+    ],
+    [
+      -4.4,
+      4.4
+    ],
+    [
+      -4.4,
+      -4.4
+    ]
+  ],
+  "restart_world": [
+    -4.2,
+    -4.2
+  ],
+  "restart_yaw_deg": -15.0,
+  "cruise_mps": 2.0,
+  "reference_acceleration_mps2": 2.0,
+  "command_acceleration_mps2": 2.5,
+  "map_from_world_translation": [
+    4.389,
+    4.37671,
+    -0.37288
+  ],
+  "geometry_status": "PROVISIONAL_TEACHING_LAYOUT",
+  "note": "Straight-section cruise target 2m/s; turns and final arrival decelerate. New red obstacle is a teaching fixture.",
+  "test_case": {
+    "origin": "S, the original mapping start; height is relative to the normal wheeled resting pose",
+    "actual_base_offset_from_S_m": [
+      0.2,
+      0.2,
+      0.0
+    ],
+    "actual_base_yaw_deg": -15.0,
+    "icp_request_translation_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "icp_request_roll_pitch_yaw_rad": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "ground_truth_used_for_control": false
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "mode": "training",
+  "name": "robocon_training",
+  "geometry_status": "PROVISIONAL_LAYOUT",
+  "dimensions_source": "ABU Robocon 2027 Rulebook V1.1 pages 7-10; detailed geometry requires separate Appendix",
+  "rule_pdf_sha256": "3fb22ecea1ac7216d63cb9043707a2d61d1d1213cd2d59641bd2386f63fefe14",
+  "official_layout_verified": false,
+  "field_size_m": [
+    11.0,
+    11.0
+  ],
+  "platforms": [
+    {
+      "name": "L1",
+      "size_m": [
+        6.0,
+        6.0
+      ],
+      "top_height_m": 0.6,
+      "center_xy_m": [
+        0,
+        0
+      ]
+    },
+    {
+      "name": "L2",
+      "size_m": [
+        3.0,
+        3.0
+      ],
+      "top_height_m": 0.9,
+      "center_xy_m": [
+        0,
+        0
+      ]
+    }
+  ],
+  "layout_assumptions": [
+    "Centered platforms are a training assumption until Appendix coordinates are checked.",
+    "Ramps, stairs, pillars and exact task-zone coordinates must be filled from the Appendix before competition layout validation."
+  ],
+  "confirmed_object_dimensions_m": {
+    "earth_edge": 0.35,
+    "sky_edge": 0.2,
+    "mustika_diameter_approx": 0.21,
+    "transfer_area_size": [
+      1.0,
+      1.0
+    ],
+    "start_zone_size": [
+      0.7,
+      0.7
+    ],
+    "ramp_length": 3.5,
+    "step_size": [
+      0.3,
+      1.0,
+      0.15
+    ]
+  },
+  "floor_thickness_m": 0.1,
+  "gravity_mps2": 9.80665,
+  "ground_route_demo": {
+    "start_xy_m": [
+      -4.4,
+      -4.4
+    ],
+    "goals_xy_m": [
+      [
+        4.4,
+        -4.4
+      ],
+      [
+        4.4,
+        4.4
+      ],
+      [
+        -4.4,
+        4.4
+      ]
+    ],
+    "note": "Navigation demonstration points, not official collection/handover coordinates."
+  }
+}

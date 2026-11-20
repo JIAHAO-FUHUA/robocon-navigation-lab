@@ -1,0 +1,22 @@
+- ros_topic_name: /clock
+  gz_topic_name: /clock
+  ros_type_name: rosgraph_msgs/msg/Clock
+  gz_type_name: gz.msgs.Clock
+  direction: GZ_TO_ROS
+- ros_topic_name: /club/cmd_vel
+  gz_topic_name: /model/club_robot/cmd_vel
+  ros_type_name: geometry_msgs/msg/Twist
+  gz_type_name: gz.msgs.Twist
+  direction: ROS_TO_GZ
+# Lidar and IMU plugins publish native ROS messages. Do not bridge duplicates.
+# Drive-plugin odometry/TF and ground truth must not enter localization or control.
+- ros_topic_name: /evaluation/ground_truth
+  gz_topic_name: /model/club_robot/evaluation_pose
+  ros_type_name: geometry_msgs/msg/PoseArray
+  gz_type_name: gz.msgs.Pose_V
+  direction: GZ_TO_ROS
+- ros_topic_name: /training/overview
+  gz_topic_name: /training/overview
+  ros_type_name: sensor_msgs/msg/Image
+  gz_type_name: gz.msgs.Image
+  direction: GZ_TO_ROS

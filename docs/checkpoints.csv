@@ -1,0 +1,7 @@
+sequence,id,level,x_m,y_m,z_m,yaw_deg,action,ready_condition
+1,S,ground,,,,,start,localization_valid
+2,RAMP_TO_L1,transition,,,,,use_ramp,level_1_reached
+3,H,L1,,,,,receive_block,simulated_handover_ready
+4,A,L1,,,,,place_at_tower_a,simulated_placement_ready
+5,H,L1,,,,,receive_block,simulated_handover_ready
+6,B,L1,,,,,place_at_tower_b,simulated_placement_ready
