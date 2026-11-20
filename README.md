@@ -2,9 +2,19 @@
 
 Practice mapping, restarting and driving a simulated robot around an obstacle. Then adapt the same workflow to the Builder Robot (BR) route to the handover area and two tower positions.
 
+## Student downloads
+
+1. **Start here.** Download the [main course ZIP][main-course-zip] before class and follow the Ubuntu setup below.
+2. [English course slides (PowerPoint)][english-slides] walk through the main lab and the homework.
+3. **After class.** Download the [vision replay ZIP][vision-replay-zip] for the optional ORB-SLAM3 and cuVSLAM homework.
+
+[main-course-zip]: https://github.com/PolyU-FENG-AI-Robotics-Club/robocon-navigation-lab/releases/download/v1.0.0/Robocon_Navigation_Lab_Student_Files.zip
+[english-slides]: https://github.com/PolyU-FENG-AI-Robotics-Club/robocon-navigation-lab/releases/download/v1.0.0/Robocon_2027_Navigation_Lab_English_Student_Release.pptx
+[vision-replay-zip]: https://github.com/PolyU-FENG-AI-Robotics-Club/robocon-navigation-lab/releases/download/v1.0.0/Robocon_Vision_Replay_Starter.zip
+
 ## 1. Get the course code and start Ubuntu
 
-Download the [student course ZIP](https://github.com/PolyU-FENG-AI-Robotics-Club/robocon-navigation-lab/releases/download/v1.0.0/Robocon_Navigation_Lab_Student_Files.zip) and extract it into your Ubuntu home folder. The project folder is `~/robocon-navigation-lab`. Use Ubuntu 24.04 x86-64 with Docker and internet access for the first build. The container uses ROS 2 Jazzy and Gazebo Harmonic.
+Extract the [main course ZIP][main-course-zip] into your Ubuntu home folder. The project folder is `~/robocon-navigation-lab`. Use Ubuntu 24.04 x86-64 with Docker and internet access for the first build. The container uses ROS 2 Jazzy and Gazebo Harmonic.
 
 Run these commands in the **Ubuntu host** terminal. If Docker is already installed, start with `sudo docker run --rm hello-world`.
 
@@ -98,4 +108,4 @@ Next use [Change the field and plan the BR exercise](docs/change-field.md) for t
 
 ## 5. Optional visual localisation homework
 
-Follow [RTAB-Map in Gazebo](extras/RTABMAP.md) for the RGB-D exercise. For ORB-SLAM3 or cuVSLAM, download the [Vision Replay Starter ZIP](https://github.com/PolyU-FENG-AI-Robotics-Club/robocon-navigation-lab/releases/download/v1.0.0/Robocon_Vision_Replay_Starter.zip). It includes the Gazebo stereo images, IMU measurements and starter scripts. See the [replay README](extras/vision-replay/README.md) for the setup and result files.
+Follow [RTAB-Map in Gazebo](extras/RTABMAP.md) for the RGB-D exercise. For ORB-SLAM3 or cuVSLAM, download the [vision replay ZIP][vision-replay-zip]. It includes the Gazebo stereo images, IMU measurements and starter scripts. See the [replay README](extras/vision-replay/README.md) for the setup and result files.
