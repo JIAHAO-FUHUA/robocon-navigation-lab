@@ -8,3 +8,9 @@ __pycache__/
 /mobile_world.sdf
 **/sessions/
 **/latest_*.txt
+/extras/.rtabmap_overlay/
+/extras/vision-replay/.cuvslam_download/
+/extras/vision-replay/.cuvslam_venv/
+/extras/vision-replay/cuvslam_runs/
+/extras/vision-replay/gazebo_data/
+/extras/vision-replay/orb_runs/

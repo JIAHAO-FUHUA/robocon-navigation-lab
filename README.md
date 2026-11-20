@@ -4,7 +4,7 @@ Practice mapping, restarting and driving a simulated robot around an obstacle. T
 
 ## 1. Get the course code and start Ubuntu
 
-Download this repository from GitHub or extract the course ZIP. Put the project in your Ubuntu home folder as `~/robocon-navigation-lab`. The folder that contains this README also contains `scripts/`, `config/` and the two demo folders. Use Ubuntu 24.04 with Docker and internet access for the first build. The container uses ROS 2 Jazzy and Gazebo Harmonic.
+Download the [student course ZIP](https://github.com/PolyU-FENG-AI-Robotics-Club/robocon-navigation-lab/releases/download/v1.0.0/Robocon_Navigation_Lab_Student_Files.zip) and extract it into your Ubuntu home folder. The project folder is `~/robocon-navigation-lab`. Use Ubuntu 24.04 x86-64 with Docker and internet access for the first build. The container uses ROS 2 Jazzy and Gazebo Harmonic.
 
 Run these commands in the **Ubuntu host** terminal. If Docker is already installed, start with `sudo docker run --rm hello-world`.
 
@@ -22,7 +22,7 @@ cd ~/robocon-navigation-lab
 bash start_lab.sh
 ```
 
-Use the same command for every session. The launcher creates the container on first use, builds any missing course dependencies, starts the virtual display and opens an Ubuntu shell inside `/work`. If an older project already uses the name `robocon-intro`, the launcher creates a separate container for this project. Wait for `Lab ready in /work`. The launcher sets the overview camera to 4 Hz, as used in the class replay. Type `exit` to return to your Ubuntu terminal.
+Use the same command for every session. The launcher creates the container on first use, builds missing course dependencies, starts the virtual display and opens an Ubuntu shell inside `/work`. If an older project already uses the name `robocon-intro`, the launcher creates a separate container for this project. Complete the first build before class and wait for `Lab ready in /work`. Type `exit` to return to your Ubuntu terminal.
 
 Use an interactive Ubuntu terminal to start the launcher. If a previous command left Bash at a `>` prompt, press Ctrl+C to cancel that unfinished command. If setup stops, save the first error and retry the launcher after resolving it. Use one simulation at a time. Run the remaining commands **inside the container**.
 
@@ -48,6 +48,7 @@ Use the original field and the original configuration for the first run. This re
 source /work/env.sh
 export ROS_DOMAIN_ID=79
 export GZ_PARTITION=robocon_bias_video
+export COMPLEX_CAMERA_HZ=2 LP_NUM_THREADS=4
 cd /work/initial_guess_video_20261116
 printf '%s\n' /work/course_map/map.pcd > latest_map.txt
 python3 run.py navigation --record
@@ -61,6 +62,7 @@ The robot starts 0.20 m away from S on both axes, turned 15° clockwise. ICP rec
 source /work/env.sh
 export ROS_DOMAIN_ID=76
 export GZ_PARTITION=robocon_complex
+export COMPLEX_CAMERA_HZ=2 LP_NUM_THREADS=4
 cd /work/complex_demo_20261113
 python3 run.py mapping --record
 ```
@@ -71,6 +73,7 @@ When you see `RETURN 0`, run `cat latest_map.txt`. The returned path should end 
 source /work/env.sh
 export ROS_DOMAIN_ID=79
 export GZ_PARTITION=robocon_bias_video
+export COMPLEX_CAMERA_HZ=2 LP_NUM_THREADS=4
 cd /work/initial_guess_video_20261116
 cp /work/complex_demo_20261113/latest_map.txt .
 python3 run.py navigation --record
@@ -92,3 +95,7 @@ python3 evaluate.py "$run_dir"
 - If a run stops, read the terminal error and `task_result.json` if available. The Gazebo and localization logs are in the same run folder. Record the first error with the run path.
 
 Next use [Change the field and plan the BR exercise](docs/change-field.md) for the target, obstacle and checkpoint activities.
+
+## 5. Optional visual localisation homework
+
+Follow [RTAB-Map in Gazebo](extras/RTABMAP.md) for the RGB-D exercise. For ORB-SLAM3 or cuVSLAM, download the [Vision Replay Starter ZIP](https://github.com/PolyU-FENG-AI-Robotics-Club/robocon-navigation-lab/releases/download/v1.0.0/Robocon_Vision_Replay_Starter.zip). It includes the Gazebo stereo images, IMU measurements and starter scripts. See the [replay README](extras/vision-replay/README.md) for the setup and result files.

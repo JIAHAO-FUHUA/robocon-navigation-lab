@@ -1,0 +1,41 @@
+{
+  "FASTLIO2_ROS2": {
+    "url": "https://github.com/liangheming/FASTLIO2_ROS2",
+    "commit": "7baa59f7339ba88ce3b646fe35b23f61031c5d3f"
+  },
+  "Livox-SDK2": {
+    "url": "https://github.com/Livox-SDK/Livox-SDK2",
+    "commit": "c0796f04c143143899c87a773d9f6b7136453c0b"
+  },
+  "livox_ros_driver2": {
+    "url": "https://github.com/Livox-SDK/livox_ros_driver2",
+    "commit": "21445540f0d100dc86a7e6df312dd70bbdb4afdf"
+  },
+  "Sophus": {
+    "url": "https://github.com/strasdat/Sophus",
+    "tag": "1.22.10",
+    "commit": "de0f8d3d92bf776271e16de56d1803940ebccab9"
+  },
+  "GTSAM": {
+    "url": "https://github.com/borglab/gtsam",
+    "tag": "4.2a9",
+    "commit": "c57988fe554e7213c77fe379c1d7c483de26ad33"
+  },
+  "scope": "Platform/plugin combination documented upstream. FASTLIO2 migration to Jazzy and full ROS/Gazebo runtime remain to be validated in Linux.",
+  "upstream_build_file_sha256": {
+    "fastlio2/CMakeLists.txt": "5c87d070cf695083ef711fbe763d5af8da8668fb28dc8233a50628343f725690",
+    "localizer/CMakeLists.txt": "1b934a3ac06a0d8dfb8a762499193bfd09d13557a5aedfdf1eb297c6ed820ecf",
+    "localizer/package.xml": "4f8265982b2ebe24bc442463ac77096e34acab746ab0fc38a388a8298e4db1df"
+  },
+  "platform": {
+    "Ubuntu": "24.04 LTS",
+    "ROS2": "Jazzy",
+    "Gazebo": "Harmonic gz-sim8",
+    "Python": "3.12"
+  },
+  "livox_gz_sim": {
+    "url": "https://github.com/mathaimp/livox_gz_sim",
+    "commit": "3f06f1ac4d3f6854f7275ca9aa097484791a1abd"
+  },
+  "runtime_patch_original_sha256": "05095e27bf03c18f84f8c677cb61460c666c485b60c474c5316ee27392b5c1ef"
+}

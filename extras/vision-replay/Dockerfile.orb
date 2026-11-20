@@ -1,0 +1,37 @@
+FROM ubuntu:20.04
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates git build-essential cmake pkg-config python3 \
+    libopencv-dev libeigen3-dev libboost-serialization-dev \
+    libgl1-mesa-dev libglew-dev libx11-dev libssl-dev libjpeg-dev libpng-dev libtiff-dev \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /orb_work
+COPY prepare_build.py replay.cpp run_trials.py env.sh ./
+RUN git init ORB_SLAM3 \
+    && git -C ORB_SLAM3 fetch --depth 1 https://github.com/UZ-SLAMLab/ORB_SLAM3.git 4452a3c4ab75b1cde34e5505a36ec3f9edcdc4c4 \
+    && git -C ORB_SLAM3 checkout --detach FETCH_HEAD \
+    && git init Pangolin \
+    && git -C Pangolin fetch --depth 1 https://github.com/stevenlovegrove/Pangolin.git dd801d244db3a8e27b7fe8020cd751404aa818fd \
+    && git -C Pangolin checkout --detach FETCH_HEAD
+ARG BUILD_JOBS=2
+RUN cmake -S Pangolin -B Pangolin/build -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX=/orb_work/pangolin_install -DBUILD_EXAMPLES=OFF \
+      -DBUILD_PANGOLIN_PYTHON=OFF -DBUILD_PANGOLIN_VIDEO=OFF -DBUILD_TESTS=OFF \
+    && cmake --build Pangolin/build --parallel "$BUILD_JOBS" \
+    && cmake --install Pangolin/build
+RUN cd ORB_SLAM3 \
+    && for dep in DBoW2 g2o; do \
+       cmake -S "Thirdparty/$dep" -B "Thirdparty/$dep/build" -DCMAKE_BUILD_TYPE=Release \
+       -DCMAKE_CXX_FLAGS='-Wno-error=deprecated-declarations' \
+       && cmake --build "Thirdparty/$dep/build" --parallel "$BUILD_JOBS" || exit 1; done \
+    && tar -xf Vocabulary/ORBvoc.txt.tar.gz -C Vocabulary \
+    && python3 /orb_work/prepare_build.py \
+    && cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=/orb_work/pangolin_install \
+    && cmake --build build --target ORB_SLAM3 --parallel "$BUILD_JOBS"
+RUN src=/orb_work/ORB_SLAM3 \
+    && g++ -std=c++11 -O3 -DCOMPILEDWITHC11 -DNDEBUG \
+       -I"$src" -I"$src/include" -I"$src/include/CameraModels" -I"$src/Thirdparty/Sophus" \
+       -I/usr/include/eigen3 -I/orb_work/pangolin_install/include replay.cpp \
+       -L"$src/lib" -Wl,-rpath,"$src/lib" -lORB_SLAM3 -L/orb_work/pangolin_install/lib -lpangolin -lGL -lGLEW \
+       -L"$src/Thirdparty/g2o/lib" -lg2o -L"$src/Thirdparty/DBoW2/lib" -lDBoW2 -lboost_serialization -lcrypto \
+       $(pkg-config --cflags --libs opencv4) -pthread -o replay

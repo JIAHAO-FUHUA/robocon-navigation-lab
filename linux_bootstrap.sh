@@ -23,7 +23,7 @@ python3 "$ROBOCON_HANDOFF/tools/patch_build.py" --source "$ROBOCON_WS/src/FASTLI
 python3 "$ROBOCON_HANDOFF/tools/patch_runtime.py" --source "$ROBOCON_WS/src/FASTLIO2_ROS2" --report /work/logs/imu_unit.patch
 echo 'STAGE 3 sensor build'
 cd "$ROBOCON_WS"
-colcon build --symlink-install --executor sequential --packages-up-to livox_gz_sim --cmake-args -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+colcon build --base-paths src --symlink-install --executor sequential --packages-up-to livox_gz_sim --cmake-args -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
 source "$ROBOCON_WS/install/setup.bash"
 echo 'STAGE 4 Sophus'
 cmake -S "$ROBOCON_WS/deps/Sophus" -B "$ROBOCON_WS/deps/Sophus/build" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$ROBOCON_DEPS" -DSOPHUS_USE_BASIC_LOGGING=ON -DBUILD_SOPHUS_TESTS=OFF -DBUILD_SOPHUS_EXAMPLES=OFF
@@ -37,7 +37,7 @@ echo 'STAGE 6 LIO PGO ICP build'
 export CMAKE_PREFIX_PATH="$ROBOCON_DEPS:${CMAKE_PREFIX_PATH:-}"
 export LD_LIBRARY_PATH="$ROBOCON_DEPS/lib:$ROBOCON_DEPS/lib64:${LD_LIBRARY_PATH:-}"
 cd "$ROBOCON_WS"
-colcon build --symlink-install --executor sequential --packages-up-to club_bringup fastlio2 pgo localizer --cmake-args -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
+colcon build --base-paths src --symlink-install --executor sequential --packages-up-to club_bringup fastlio2 pgo localizer --cmake-args -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
 source "$ROBOCON_WS/install/setup.bash"
 ros2 pkg executables fastlio2
 ros2 pkg executables pgo
